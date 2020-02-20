@@ -9,7 +9,13 @@ namespace HashCode
             var solution = new Solution();
             var numDayLeft = challenge.NumberOfDays;
             
-            foreach (var library in challenge.Libraries)
+            var sortedLibraries = 
+                challenge.Libraries
+                    .OrderBy(library => library.SignupTime)
+                    .ThenByDescending(library => library.ScanVelocity)
+                    .ThenByDescending(library => library.Books.Count);
+                    
+            foreach (var library in sortedLibraries)
             {
                 if (numDayLeft <= 0)
                     break;
@@ -33,5 +39,10 @@ namespace HashCode
             
             return solution;
         }
+        //
+        // private static void ScoreLibrary(Library library)
+        // {
+        //     library.Score = library.ScanVelocity + library.SignupTime
+        // }
     }
 }
