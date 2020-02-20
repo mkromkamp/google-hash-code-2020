@@ -4,6 +4,11 @@ namespace HashCode
 {
     public class Solution
     {
+        public Solution()
+        {
+            Libraries = new LinkedList<SolutionLibrary>();
+        }
+        
         /// <summary>
         /// Ordered list of the libraries. The first library in the list is signed up first, the last one last.
         /// </summary>
@@ -12,6 +17,12 @@ namespace HashCode
 
     public class SolutionLibrary
     {
+        public SolutionLibrary(int id)
+        {
+            Id = id;
+            Books = new LinkedList<Book>();
+        }
+        
         /// <summary>
         /// The Id of the library.
         /// </summary>
