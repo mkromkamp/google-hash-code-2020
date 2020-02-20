@@ -24,6 +24,8 @@ namespace HashCode
                         var bookIds = string.Join(" ", library.Books.Select(book => book.Id));
                         writer.WriteLine(bookIds);
                     }
+                    
+                    writer.Flush();
                 }
             }
         }

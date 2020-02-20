@@ -18,6 +18,8 @@ namespace HashCode
 
             return mergedBooks.Distinct().Count();
         }
+        // ref to the books, might not be needed
+        public List<Book> Books { get; set; }
     }
 
     public class Library
@@ -26,6 +28,8 @@ namespace HashCode
         public int SignupTime { get; set; }
         public int ScanVelocity { get; set; }
         public List<Book> Books { get; set; }
+
+        public int Score { get; set; }
     }
 
     public class Book
