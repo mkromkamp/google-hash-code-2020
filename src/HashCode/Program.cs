@@ -23,7 +23,10 @@ namespace HashCode
             Output.Write(solution, "output/sample1.out");
             
             Console.WriteLine("Starting!");
-            Input.Parse(Path.Combine("input", "sample1.in"));
+            var challenge = Input.Parse(Path.Combine("input", "sample1.in"));
+            
+            
+            
             Console.WriteLine("Finished");
         }
     }

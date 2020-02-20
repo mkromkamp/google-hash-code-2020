@@ -18,6 +18,8 @@ namespace HashCode
         public int SignupTime { get; set; }
         public int ScanVelocity { get; set; }
         public List<Book> Books { get; set; }
+
+        public int Score { get; set; }
     }
 
     public class Book
