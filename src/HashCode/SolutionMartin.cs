@@ -1,3 +1,5 @@
+using System.Linq;
+
 namespace HashCode
 {
     public static class SolutionMartin
@@ -24,7 +26,9 @@ namespace HashCode
                 }
 
                 numDayLeft -= library.SignupTime;
-                solution.Libraries.Add(solutionLibrary);
+                
+                if (solutionLibrary.Books.Any())
+                    solution.Libraries.Add(solutionLibrary);
             }
             
             return solution;

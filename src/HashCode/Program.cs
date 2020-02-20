@@ -10,19 +10,16 @@ namespace HashCode
         {
             Console.WriteLine("Starting!");
 
-            // for (int i = 1; i <= 6; i++)
-            // {
-            //     if (new [] {2,3}.Contains(i))
-            //         continue;
-            //
-            //     var challenge = Input.Parse(Path.Combine("input", $"sample{i}.in"));
-            //     var solution = SolutionMartin.Solve(challenge);
-            //     Output.Write(solution, $"output/sample{i}.out");
-            // }
+            for (int i = 1; i <= 6; i++)
+            {
+                var challenge = Input.Parse(Path.Combine("input", $"sample{i}.in"));
+                var solution = SolutionMartin.Solve(challenge);
+                Output.Write(solution, $"output/sample{i}.out");
+            }
             
-            var challenge = Input.Parse(Path.Combine("input", $"sample1.in"));
-            var solution = SolutionMartin.Solve(challenge);
-            Output.Write(solution, $"output/sample1.out");
+            // var challenge = Input.Parse(Path.Combine("input", $"sample2.in"));
+            // var solution = SolutionMartin.Solve(challenge);
+            // Output.Write(solution, $"output/sample2.out");
             
             Console.WriteLine("Starting!");
             //var challenge = Input.Parse(Path.Combine("input", "sample2.in"));

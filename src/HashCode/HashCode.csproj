@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <None Update="output\*.*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 
