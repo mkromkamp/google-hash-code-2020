@@ -41,7 +41,7 @@ namespace HashCode
                     Id = ++libraryId,
                     Books = new List<Book>(int.Parse(libraryLine[0])),
                     SignupTime = int.Parse(libraryLine[1]),
-                    ScanVelocity = int.Parse(libraryLine[2]),
+                    ScanVelocity = int.Parse(libraryLine[2])
                 };
 
                 var bookLine = lines[++i].TrimEnd().Split(' ');

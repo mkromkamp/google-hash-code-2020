@@ -21,8 +21,8 @@ namespace HashCode
             // }
             
             var challenge = Input.Parse(Path.Combine("input", $"sample1.in"));
-            var solution = SolutionMartin.Solve(challenge);
-            Output.Write(solution, $"output/sample1.out");
+            var solution = SolutionKavir.Solve(challenge);
+            Output.Write(solution, $"output/sample1.kavir.out");
             
             Console.WriteLine("Starting!");
             //var challenge = Input.Parse(Path.Combine("input", "sample2.in"));

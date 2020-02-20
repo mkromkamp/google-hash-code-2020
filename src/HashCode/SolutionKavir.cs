@@ -7,6 +7,12 @@ namespace HashCode
         public static Solution Solve(Challenge challenge)
         {
             var solution = new Solution();
+
+            foreach (var library in challenge.Libraries)
+            {
+                library.Score = library.Books.Sum(l => l.Score);
+            }
+
             var orderedList = challenge.Libraries.OrderBy(l => l.SignupTime).ThenBy(l => l.Score).ToList();
 
             int totalLibraries = challenge.Libraries.Count;
@@ -20,16 +26,19 @@ namespace HashCode
                 if (processingLibrary.SignupTime-- > 0)
                     continue;
 
-                numOfBooksThatCanBeAdded = (challenge.NumberOfDays - 1) - currentDay;
+                numOfBooksThatCanBeAdded = ((challenge.NumberOfDays - 1) - currentDay) * processingLibrary.ScanVelocity;
 
                 var booksToBeAdded = processingLibrary.Books.OrderBy(b => b.Score).Take(numOfBooksThatCanBeAdded).ToList();
 
-                solution.Libraries.Add(
-                    new SolutionLibrary(libraryId)
-                    {
-                        Books = booksToBeAdded
-                    });
-
+                if (numOfBooksThatCanBeAdded > 0 && booksToBeAdded.Count > 0)
+                {
+                    solution.Libraries.Add(
+                        new SolutionLibrary(libraryId)
+                        {
+                            Books = booksToBeAdded
+                        });
+                }
+                
                 if (++processingLibraryNumber >= totalLibraries)
                     break;
 
