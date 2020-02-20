@@ -13,7 +13,7 @@ namespace HashCode
                 library.Score = library.Books.Sum(l => l.Score);
             }
 
-            var orderedList = challenge.Libraries.OrderBy(l => l.SignupTime).ThenBy(l => l.Score).ToList();
+            var orderedList = challenge.Libraries.OrderBy(l => l.SignupTime).ThenByDescending(l => l.Score).ToList();
 
             bool[] booksScanned = new bool[challenge.Books.Count];
             int totalLibraries = challenge.Libraries.Count;
@@ -23,12 +23,16 @@ namespace HashCode
 
             for (int currentDay = 0; currentDay < challenge.NumberOfDays; currentDay++)
             {
-                if (processingLibrary.SignupTime-- > 0)
+                if (--processingLibrary.SignupTime > 0)
                     continue;
 
                 numOfBooksThatCanBeAdded = ((challenge.NumberOfDays - 1) - currentDay) * processingLibrary.ScanVelocity;
 
-                var booksToBeAdded = processingLibrary.Books.OrderBy(b => b.Score).Take(numOfBooksThatCanBeAdded).ToList();
+                var booksToBeAdded = processingLibrary.Books
+                .OrderByDescending(b => b.Score)
+                .Where(b => !booksScanned[b.Id])
+                .Take(numOfBooksThatCanBeAdded)
+                .ToList();
 
                 if (numOfBooksThatCanBeAdded > 0 && booksToBeAdded.Count > 0)
                 {
@@ -37,6 +41,9 @@ namespace HashCode
                         {
                             Books = booksToBeAdded
                         });
+
+                    foreach (var book in booksToBeAdded)
+                        booksScanned[book.Id] = true;
                 }
 
                 if (++processingLibraryNumber >= totalLibraries)
