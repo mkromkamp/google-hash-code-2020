@@ -17,4 +17,11 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="input\sample1.in" />
+    <Content Include="input\sample1.in">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>
