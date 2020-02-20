@@ -15,7 +15,7 @@ namespace HashCode
             for (int i = 1; i <= 6; i++)
             {
                 var challenge = Input.Parse(Path.Combine("input", $"sample{i}.in"));
-                var solution = SolutionKavir.Solve(challenge);
+                var solution = SolutionMartin.Solve(challenge);
                 Output.Write(solution, $"output/sample{i}.out");
                 
                 scores.Add(solution.Score());
