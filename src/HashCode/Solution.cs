@@ -17,7 +17,10 @@ namespace HashCode
 
         public long Score()
         {
-            return Libraries.Sum(library => library.Books.Sum(b => b.Score));
+            return Libraries
+                .SelectMany(l => l.Books)
+                .Distinct()
+                .Sum(b => b.Score);
         }
         
     }
