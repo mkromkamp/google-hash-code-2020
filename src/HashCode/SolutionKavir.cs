@@ -15,10 +15,10 @@ namespace HashCode
 
             var orderedList = challenge.Libraries.OrderBy(l => l.SignupTime).ThenBy(l => l.Score).ToList();
 
+            bool[] booksScanned = new bool[challenge.Books.Count];
             int totalLibraries = challenge.Libraries.Count;
             int processingLibraryNumber = 0;
             var processingLibrary = orderedList[processingLibraryNumber];
-            int libraryId = orderedList[processingLibraryNumber].Id;
             int numOfBooksThatCanBeAdded = 0;
 
             for (int currentDay = 0; currentDay < challenge.NumberOfDays; currentDay++)
@@ -33,12 +33,12 @@ namespace HashCode
                 if (numOfBooksThatCanBeAdded > 0 && booksToBeAdded.Count > 0)
                 {
                     solution.Libraries.Add(
-                        new SolutionLibrary(libraryId)
+                        new SolutionLibrary(orderedList[processingLibraryNumber].Id)
                         {
                             Books = booksToBeAdded
                         });
                 }
-                
+
                 if (++processingLibraryNumber >= totalLibraries)
                     break;
 
