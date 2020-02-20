@@ -29,7 +29,7 @@ namespace HashCode
         public int ScanVelocity { get; set; }
         public List<Book> Books { get; set; }
 
-        public int Score { get; set; }
+        public decimal Score { get; set; }
     }
 
     public class Book
