@@ -18,13 +18,13 @@ namespace HashCode
                 for (var i = 0; i < totalShippingDays * library.ScanVelocity - 1; i++)
                 {
                     if (library.Books.Count > i)
-                        solutionLibrary.Books.AddLast(library.Books[i]);
+                        solutionLibrary.Books.Add(library.Books[i]);
                     else
                         break;
                 }
 
                 numDayLeft -= library.SignupTime;
-                solution.Libraries.AddLast(solutionLibrary);
+                solution.Libraries.Add(solutionLibrary);
             }
             
             return solution;

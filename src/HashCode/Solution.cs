@@ -6,13 +6,13 @@ namespace HashCode
     {
         public Solution()
         {
-            Libraries = new LinkedList<SolutionLibrary>();
+            Libraries = new List<SolutionLibrary>();
         }
         
         /// <summary>
         /// Ordered list of the libraries. The first library in the list is signed up first, the last one last.
         /// </summary>
-        public LinkedList<SolutionLibrary> Libraries { get; set; }
+        public List<SolutionLibrary> Libraries { get; set; }
     }
 
     public class SolutionLibrary
@@ -20,7 +20,7 @@ namespace HashCode
         public SolutionLibrary(int id)
         {
             Id = id;
-            Books = new LinkedList<Book>();
+            Books = new List<Book>();
         }
         
         /// <summary>
@@ -32,6 +32,6 @@ namespace HashCode
         /// Linked list of books the library is shipping.
         /// First book is shipped first, last book is shipped last
         /// </summary>
-        public LinkedList<Book> Books { get; set; }
+        public List<Book> Books { get; set; }
     }
 }
