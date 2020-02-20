@@ -33,7 +33,7 @@ namespace HashCode
             }
 
             var libraryId = -1;
-            for (int i = 1; i < lines.Count()-1; i++)
+            for (int i = 2; i < lines.Count()-1; i++)
             {
                 var libraryLine = lines[i].Split(' ');
                 var library = new Library()
@@ -49,6 +49,7 @@ namespace HashCode
                 {
                     library.Books.Add(challenge.Books[int.Parse(id)]);
                 }
+                
                 challenge.Libraries.Add(library);
             }
 
