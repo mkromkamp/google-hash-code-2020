@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace HashCode
 {
@@ -13,6 +14,15 @@ namespace HashCode
         /// Ordered list of the libraries. The first library in the list is signed up first, the last one last.
         /// </summary>
         public List<SolutionLibrary> Libraries { get; set; }
+
+        public long Score()
+        {
+            return Libraries
+                .SelectMany(l => l.Books)
+                .Distinct()
+                .Sum(b => b.Score);
+        }
+        
     }
 
     public class SolutionLibrary

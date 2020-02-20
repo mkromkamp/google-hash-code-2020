@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -9,24 +10,20 @@ namespace HashCode
         static void Main(string[] args)
         {
             Console.WriteLine("Starting!");
-
-            // for (int i = 1; i <= 6; i++)
-            // {
-            //     if (new [] {2,3}.Contains(i))
-            //         continue;
-            //
-            //     var challenge = Input.Parse(Path.Combine("input", $"sample{i}.in"));
-            //     var solution = SolutionMartin.Solve(challenge);
-            //     Output.Write(solution, $"output/sample{i}.out");
-            // }
+        var scores = new List<long>();
             
-            var challenge = Input.Parse(Path.Combine("input", $"sample1.in"));
-            var solution = SolutionKavir.Solve(challenge);
-            Output.Write(solution, $"output/sample1.kavir.out");
+            for (int i = 1; i <= 6; i++)
+            {
+                var challenge = Input.Parse(Path.Combine("input", $"sample{i}.in"));
+                var solution = SolutionMartin.Solve(challenge);
+                Output.Write(solution, $"output/sample{i}.out");
+                
+                scores.Add(solution.Score());
+                
+                Console.WriteLine($"Input {i}: {solution.Score()} points");
+            }
             
-            Console.WriteLine("Starting!");
-            //var challenge = Input.Parse(Path.Combine("input", "sample2.in"));
-            Console.WriteLine("Finished");
+            Console.WriteLine($"Finished with total {scores.Sum()}");
         }
     }
 }

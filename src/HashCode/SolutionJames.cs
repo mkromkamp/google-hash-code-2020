@@ -1,3 +1,7 @@
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Channels;
+
 namespace HashCode
 {
     public static class SolutionJames
@@ -6,12 +10,23 @@ namespace HashCode
         {
             var solution = new Solution();
             var numDayLeft = challenge.NumberOfDays;
-            
+
             foreach (var library in challenge.Libraries)
+            {
+                library.Score = CalculateLibraryScore(library);
+            }
+
+            
+            
+            
+            
+            
+            
+            foreach (var library in challenge.Libraries.OrderByDescending(x => x.Score))
             {
                 if (numDayLeft <= 0)
                     break;
-            
+
                 var solutionLibrary = new SolutionLibrary(library.Id);
                 var totalShippingDays = numDayLeft - library.SignupTime;
 
@@ -24,10 +39,18 @@ namespace HashCode
                 }
 
                 numDayLeft -= library.SignupTime;
-                solution.Libraries.Add(solutionLibrary);
+                if (solutionLibrary.Books.Any())
+                    solution.Libraries.Add(solutionLibrary);
             }
-            
+
             return solution;
+        }
+
+        private static int CalculateLibraryScore(Library library)
+        {
+            var daysToProcess = library.SignupTime + (library.Books.Count() / library.ScanVelocity);
+            var totalScore = library.Books.Sum(x => x.Score);
+            return totalScore / daysToProcess;
         }
     }
 }
