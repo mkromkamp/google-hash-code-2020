@@ -13,6 +13,11 @@ namespace HashCode
     public class SolutionLibrary
     {
         /// <summary>
+        /// The Id of the library.
+        /// </summary>
+        public int Id { get; set; }
+        
+        /// <summary>
         /// Linked list of books the library is shipping.
         /// First book is shipped first, last book is shipped last
         /// </summary>
