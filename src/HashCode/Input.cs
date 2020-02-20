@@ -20,7 +20,7 @@ namespace HashCode
                 NumberOfDays = int.Parse(challengeInputs[2])
             };
 
-            var booksInput = lines[1].Split(' ');
+            var booksInput = lines[1].TrimEnd().Split(' ');
             challenge.Books = new List<Book>(booksInput.Count());
 
             for (int i = 0; i < booksInput.Count(); i++)
@@ -35,7 +35,7 @@ namespace HashCode
             var libraryId = -1;
             for (int i = 2; i < lines.Count()-1; i++)
             {
-                var libraryLine = lines[i].Split(' ');
+                var libraryLine = lines[i].TrimEnd().Split(' ');
                 var library = new Library()
                 {
                     Id = ++libraryId,
@@ -44,7 +44,7 @@ namespace HashCode
                     ScanVelocity = int.Parse(libraryLine[2]),
                 };
 
-                var bookLine = lines[++i].Split(' ');
+                var bookLine = lines[++i].TrimEnd().Split(' ');
                 foreach (var id in bookLine)
                 {
                     library.Books.Add(challenge.Books[int.Parse(id)]);
