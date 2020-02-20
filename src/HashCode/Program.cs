@@ -24,7 +24,6 @@ namespace HashCode
             
             Console.WriteLine("Starting!");
             Input.Parse(Path.Combine("input", "sample1.in"));
-            
             Console.WriteLine("Finished");
         }
     }

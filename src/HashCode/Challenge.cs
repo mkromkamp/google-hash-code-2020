@@ -8,6 +8,8 @@ namespace HashCode
         public int TotalNumberOfBooks { get; set; }
         
         public List<Library> Libraries { get; set; }
+        // ref to the books, might not be needed
+        public List<Book> Books { get; set; }
     }
 
     public class Library
