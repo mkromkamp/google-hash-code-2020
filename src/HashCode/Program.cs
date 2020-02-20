@@ -15,14 +15,10 @@ namespace HashCode
                 var challenge = Input.Parse(Path.Combine("input", $"sample{i}.in"));
                 var solution = SolutionMartin.Solve(challenge);
                 Output.Write(solution, $"output/sample{i}.out");
+                
+                Console.WriteLine($"Input {i}: {solution.Score()} points");
             }
             
-            // var challenge = Input.Parse(Path.Combine("input", $"sample2.in"));
-            // var solution = SolutionMartin.Solve(challenge);
-            // Output.Write(solution, $"output/sample2.out");
-            
-            Console.WriteLine("Starting!");
-            //var challenge = Input.Parse(Path.Combine("input", "sample2.in"));
             Console.WriteLine("Finished");
         }
     }
