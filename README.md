@@ -12,3 +12,5 @@ chmod +x ./create_zip.sh
 ```
 ./create_zip.sh
 ```
+
+After running the project we should have the output file(s) in the output directory in source project.
