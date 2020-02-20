@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace HashCode
 {
@@ -6,8 +7,17 @@ namespace HashCode
     {
         public int NumberOfDays { get; set; }
         public int TotalNumberOfBooks { get; set; }
-        
+
         public List<Library> Libraries { get; set; }
+
+        public int GetTotalNumberOfUniqueBooks()
+        {
+            var mergedBooks = new List<int>();
+
+            Libraries.ForEach(lib => mergedBooks.AddRange(lib.Books.Select(b => b.Id)));
+
+            return mergedBooks.Distinct().Count();
+        }
     }
 
     public class Library
