@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace HashCode
 {
@@ -6,7 +7,10 @@ namespace HashCode
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Starting!");
+            Input.Parse(Path.Combine("input", "sample1.in"));
+            
+            Console.WriteLine("Finished");
         }
     }
 }
