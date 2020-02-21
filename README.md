@@ -7,7 +7,13 @@ Team Endor
 - [Adrien Rose](https://github.com/adrienrose)
 - [Martin Kromkamp](https://github.com/mkromkamp)
 
-## Score
+## Scoreboard
+
+- 2851th overall
+- 131th overall in the UK
+- 2nd on Mintel Group Hub
+
+### Score
 
 | Problem | Score |
 |---|---|
@@ -18,12 +24,6 @@ Team Endor
 | E | 4,377,911 |
 
 Total:  23,297,508 points
-
-### Official Scoreboard:
-
-- 2851th overall
-- 131th overall in the UK
-- 2nd on Mintel Group Hub
 
 ## Submitting the solution
 
