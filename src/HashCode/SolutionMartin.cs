@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 
 namespace HashCode
@@ -9,12 +10,35 @@ namespace HashCode
             var solution = new Solution();
             var numDayLeft = challenge.NumberOfDays;
             
-            var sortedLibraries = 
-                challenge.Libraries
-                    .OrderBy(library => library.SignupTime)
-                    // .ThenByDescending(library => library.ScanVelocity)
-                    .ThenByDescending(ScoreLibrary);
-                    
+            // Sort books
+            foreach (var library in challenge.Libraries)
+            {
+                library.Books = library.Books.Distinct().OrderByDescending(b => b.Score).ToList();
+            }
+
+            var libraries = challenge.Libraries;
+            var sortedLibraries = new List<Library>();
+            var daysLeft = challenge.NumberOfDays;
+            var seenBooks = new List<Book>();
+            
+            while (libraries.Any())
+            {
+                var bestLibrary =
+                    libraries.OrderBy(library => library.SignupTime)
+                        .ThenByDescending(library => ScoreLibrary(library, daysLeft))
+                        .FirstOrDefault();
+                        
+                sortedLibraries.Add(bestLibrary);
+                daysLeft -= bestLibrary.SignupTime;
+                libraries.Remove(bestLibrary);
+            }
+            //
+            // var sortedLibraries = 
+            //     challenge.Libraries
+            //         .OrderBy(library => library.SignupTime)
+            //         // .ThenByDescending(library => library.ScanVelocity)
+            //         .ThenByDescending(library => ScoreLibrary(library, challenge.NumberOfDays)).ToList();
+            var seenBook = new List<Book>();
             foreach (var library in sortedLibraries)
             {
                 if (numDayLeft <= 0)
@@ -22,12 +46,22 @@ namespace HashCode
             
                 var solutionLibrary = new SolutionLibrary(library.Id);
                 var totalShippingDays = numDayLeft - library.SignupTime;
-                var sortedBooks = library.Books.Distinct().OrderByDescending(b => b.Score).ToList();
 
                 for (var i = 0; i < totalShippingDays * library.ScanVelocity - 1; i++)
                 {
-                    if (sortedBooks.Count > i)
-                        solutionLibrary.Books.Add(sortedBooks[i]);
+                    if (library.Books.Count > i)
+                    {
+                        var uniqueBooks = library.Books.Except(seenBook).ToList();
+                        if (uniqueBooks.Any())
+                        {
+                            solutionLibrary.Books.Add(uniqueBooks.First());
+                            seenBook.Add(uniqueBooks.First());
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
                     else
                         break;
                 }
@@ -41,9 +75,15 @@ namespace HashCode
             return solution;
         }
         
-        private static long ScoreLibrary(Library library)
+        private static (List<Book>, long) ScoreLibrary(Library library, int totalDaysLeft, List<Book> seenBooks)
         {
-            return library.ScanVelocity * (library.Books.Distinct().Sum(b => b.Score) / library.Books.Distinct().Count());
+            if (totalDaysLeft <= 0)
+                return totalDaysLeft;
+
+            var books = library.Books.Except(seenBooks)
+                .Take((totalDaysLeft - library.SignupTime) * library.ScanVelocity).ToList();
+        
+            return (books, books.Sum(b => b.Score));
         }
     }
 }
