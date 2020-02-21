@@ -75,15 +75,12 @@ namespace HashCode
             return solution;
         }
         
-        private static (List<Book>, long) ScoreLibrary(Library library, int totalDaysLeft, List<Book> seenBooks)
+        private static long ScoreLibrary(Library library, int totalDaysLeft)
         {
             if (totalDaysLeft <= 0)
                 return totalDaysLeft;
 
-            var books = library.Books.Except(seenBooks)
-                .Take((totalDaysLeft - library.SignupTime) * library.ScanVelocity).ToList();
-        
-            return (books, books.Sum(b => b.Score));
+            return library.Books.Take((totalDaysLeft - library.SignupTime) * library.ScanVelocity).Sum(b => b.Score);
         }
     }
 }
